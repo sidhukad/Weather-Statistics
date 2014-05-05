@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Chart</title>
   
-  <script type='text/javascript' src='/js/lib/dummy.js'></script>  
+  <script type='text/javascript' src='/js/lib/dummy.js'>
+  
+  </script>  
   <link rel="stylesheet" type="text/css" href="/css/normalize.css">  
   <link rel="stylesheet" type="text/css" href="/css/result-light.css">
 
@@ -17,30 +18,37 @@
     font-size : 11px;
 }
   </style>
-  
+<script type='text/javascript'>
+</script>  
 </head>
-<body>
+<body bgcolor="cornsilk">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 <div id="chartdiv"></div>
-<a href="index.jsp">Go Back</a>
-<script type='text/javascript'>
+<br>
+<br>
+<a href="http://localhost:8080/WebApplication1/index.jsp">Go Back</a>
+<a href="http://localhost:8080/WebApplication1/index1.html">Home</a>
 
-$(document).ready(function() {
+
+<script type='text/javascript'>
+AmCharts.ready(function() {
     // get data
     //var data = document.getElementById('csv').value;
-    jQuery.get('output/000000_0',function(data) 
+        jQuery.get('output/000000_0',function(data)
     { 
-         //replace UNIX new lines
+        console.log(data);
+        //
+ //replace UNIX new lines
     //alert(data);
     data = data.replace(/\r\n/g, "\n");
     //replace MAC new lines
     data = data.replace(/\r/g, "\n");
     //split into rows
     var rows = data.split("\n");
-    var chartData1 = [];
+    var chartData = [];
     // loop through all rows
     for (var i = 0; i < rows.length; i++) {
         // this line helps to skip empty rows
@@ -60,11 +68,11 @@ $(document).ready(function() {
                 year:value2
             };
             // add object to chartData array
-            chartData1.push(dataObject);
+            chartData.push(dataObject);
         }
     }
     
-    var chartData = chartData1 ;
+    //var chartData = chartData1 ;
 
 
 var chart = AmCharts.makeChart("chartdiv", {
@@ -89,11 +97,13 @@ var chart = AmCharts.makeChart("chartdiv", {
         "type": "column",
         "valueField": "expenses"
     }],
+    
     "rotate": true,
     "categoryField": "year",
     "categoryAxis": {
         "gridPosition": "start",
-        "position": "left"
+        "position": "left",
+        
     },
 	"exportConfig":{
 		"menuBottom":"20px",
@@ -104,15 +114,16 @@ var chart = AmCharts.makeChart("chartdiv", {
         }]  
     }
 });
+chart.addTitle("Top Telent Turnover", 10, "grey", "alpha", "bold");
   }
 
 );
+//chart.validateData();
 });
 </script>
 
 
 </body>
-
 
 </html>
 

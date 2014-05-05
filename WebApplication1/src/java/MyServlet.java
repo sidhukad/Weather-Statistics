@@ -13,7 +13,7 @@ import javax.servlet.http.*;
 public class MyServlet extends HttpServlet {
     
     private Connection con;
-    private Statement stmt;
+    private Statement stmt; 
     private final String driverName = "org.apache.hadoop.hive.jdbc.HiveDriver";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -40,26 +40,46 @@ public class MyServlet extends HttpServlet {
             //out.println("Searching and formating the data absed on your search..");
             String select1 = request.getParameter("sel1");
             String select2 = request.getParameter("sel2");
-
+            String crt = "";
             if("year".equals(select2)) {
-                String crt = request.getParameter("crt");
+                crt = request.getParameter("crt");
 		stmt = con.createStatement();
                 //String sql = "insert overwrite local directory '/src/java/hiveOutput' select MAX("+select1+") as MAX, state as STATE from climate1 where year='"+crt+"' group by state";
-                String sql = "insert overwrite local directory '/Users/sidhu/NetBeansProjects/WebApplication1/web/output' row format delimited fields terminated by ',' stored as textfile select MAX("+select1+") as max_value,MIN("+select1+") as min_value, state as state from climate1 where year='"+crt+"' group by state";
-                stmt.execute(sql);
+                if("temp".equals(select1)) {
+                    String sql = "insert overwrite local directory '/Users/sidhu/NetBeansProjects/WebApplication1/web/output' row format delimited fields terminated by ',' stored as textfile select MAX(max_temp) as max_value,MIN(min_temp) as min_value, state as state from climate1 where year='"+crt+"' group by state";
+                    stmt.execute(sql);
+                } else {
+                    String sql = "insert overwrite local directory '/Users/sidhu/NetBeansProjects/WebApplication1/web/output' row format delimited fields terminated by ',' stored as textfile select MAX("+select1+") as max_value,MIN("+select1+") as min_value, state as state from climate1 where year='"+crt+"' group by state";
+                    stmt.execute(sql);
+                }
             }
             if("state".equals(select2)) {
-                String crt = request.getParameter("crt");
+                crt = request.getParameter("crt");
 		stmt = con.createStatement();
                 //String sql = "insert overwrite local directory '/src/java/hiveOutput' select MAX("+select1+") as MAX, year as YEAR from climate1 where state ='"+crt+"' group by year";
-                String sql = "insert overwrite local directory '/Users/sidhu/NetBeansProjects/WebApplication1/web/output' row format delimited fields terminated by ',' stored as textfiel select MAX("+select1+") as MAX,MIN("+select1+")as min_value, year as YEAR from climate1 where state ='"+crt+"' group by year";
-
-                stmt.execute(sql);
+                if("temp".equals(select1)) {
+                    String sql = "insert overwrite local directory '/Users/sidhu/NetBeansProjects/WebApplication1/web/output' row format delimited fields terminated by ',' stored as textfiel select MAX(max_temp) as MAX,MIN(min_temp)as min_value, year as YEAR from climate1 where state ='"+crt+"' group by year";
+                    stmt.execute(sql);
+                } else {
+                    String sql = "insert overwrite local directory '/Users/sidhu/NetBeansProjects/WebApplication1/web/output' row format delimited fields terminated by ',' stored as textfiel select MAX("+select1+") as MAX,MIN("+select1+")as min_value, year as YEAR from climate1 where state ='"+crt+"' group by year";
+                    stmt.execute(sql);
+                }
             }
-                
-             RequestDispatcher view = request.getRequestDispatcher("new.html");
-             view.forward(request, response);
-
+             /*
+             ServletContext ctxt = getServletContext();
+             RequestDispatcher view = ctxt.getRequestDispatcher("/new.html");
+             //if("year".equals(select2)) {
+                //out.println("Maximum and Minimum statistics of "+select1+" for all states in year "+crt);
+                view.forward(request, response);
+             *///}
+             //if("state".equals(select1)) {
+              //  out.println("Maximum and Minimum statistics of "+select1+" for "+crt+" from 2012 to 2014");
+               // view.include(request, response);
+            // }
+            response.sendRedirect("new.html");
+        } finally {
+            stmt.close();
+            con.close();
         }
     }
 
