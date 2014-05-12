@@ -1,0 +1,79 @@
+
+    <title>Selection</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/cover.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">WeatherAnalytics</h3>
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inner cover">
+<form action="controller.php" method="GET">
+
+<h3>Select State : </h3>
+<select name="state">
+  <option value="California">California</option>
+  <option value="Arizona">Arizona</option>
+  <option value="Florida">Florida</option>
+  <option value="NewYork">NewYork</option>
+</select>
+<br/>
+<h3>Select Year : </h3>
+<select name="year">
+  <option value="2012">2012</option>
+  <option value="2013">2013</option>
+  <option value="2014">2014</option>
+</select>
+<br/><br/>
+<input type="submit" name="button" value="submit" style="background-color:#100; color:#fff;"/>
+</form>
+</div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/docs.min.js"></script>
+  </body>
+</html>
+
