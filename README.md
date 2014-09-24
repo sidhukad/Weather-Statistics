@@ -1,7 +1,8 @@
-WeatherAnalyzer
+Weather Statistics using Big Data Tools
 ==========
-This project uses hadoop and visulaization technologies to parse and visulaize the large climatic data of 4 states i.e Arizona, California, Florida and New York.
-The data is collected from NCDC (National Climatic Data Center)
-This Data is reduced using hadoop
-MySQl database is used in this project 
-HIghCharts were used for the visulaization purpose.
+A web application that collects official weather data, processes it using various Big Data tools and produces meaningful statistics and charts in customized form. 
+Tools used: 
+Front End: HTML/CSS, JavaScript, HighCharts 
+Backend: PHP
+Big Data Tools used: Apache Hadoop(Single Node cluster), MapReduce(Java), Apache Hive, MySQL 
+and hosted on Amazon EC2
